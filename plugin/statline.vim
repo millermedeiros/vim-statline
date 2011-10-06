@@ -19,13 +19,13 @@
 " Another benefit is that colors will adapt to colorscheme.
 
 "filename
-hi link User1 Identifier
+hi default link User1 Identifier
 " flags
-hi link User2 Statement
+hi default link User2 Statement
 " errors
-hi link User3 Error
+hi default link User3 Error
 " fugitive
-hi link User4 Special
+hi default link User4 Special
 
 
 
