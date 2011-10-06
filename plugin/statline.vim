@@ -124,7 +124,7 @@ function! StatlineTrailingSpaceWarning()
             let b:statline_trailing_space_warning = ''
         endif
     endif
-    return b:statline_trailing_space_warnins
+    return b:statline_trailing_space_warning
 endfunction
 
 if g:statline_trailing_space
