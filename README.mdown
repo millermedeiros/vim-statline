@@ -8,7 +8,6 @@ Based on [gf3/.vimrc](https://github.com/gf3/dotfiles) and the statusline
 from [factorylabs/vimfiles](https://github.com/factorylabs/vimfiles).
 
 
-
 ## Screenshots
 
 ### Details
@@ -59,12 +58,12 @@ let g:statline_fugitive = 1
 
 ### Enable/Disable mixed indentation check
 
-vim-statline will check for mixed indentation at each save and also when idle
+statline will check for mixed indentation at each save and also when idle
 by default, to disable it:
 
 ```vim
 " disable mixed indentation check
-let g:statline_trailing_space = 0
+let g:statline_mixed_indent = 0
 ```
 
 
@@ -74,8 +73,8 @@ vim-statline will check for trailing white spaces at each save and also when
 idle by default, to disable it:
 
 ```vim
-" disable mixed indentation check
-let g:statline_mixed_indent = 0
+" disable trailing space check
+let g:statline_trailing_space = 0
 ```
 
 
@@ -98,15 +97,30 @@ hi link User3 Error
 hi link User4 Special
 ```
 
-you can change these colors inside your .vimrc file, eg:
+You can change these colors inside your .vimrc file, eg:
 
 ```vim
 hi link User2 Constant
 hi User3 guifg=#FFFFFF guibg=#FF0000 gui=bold ctermfg=15 ctermbg=1 cterm=bold
 ```
 
-to check the existing Syntax highlighting groups and their colors use the
+To check the existing Syntax highlighting groups and their colors use the
 command `:so $VIMRUNTIME/syntax/hitest.vim`
+
+
+
+## Installation
+
+If you don't have a preferred installation method, I recommend
+installing [pathogen.vim](https://github.com/tpope/vim-pathogen), and
+then simply copy and paste:
+
+    cd ~/.vim/bundle
+    git clone git://github.com/git@github.com:millermedeiros/vim-statline.git
+
+Once help tags have been generated, you can view the manual with
+`:help statline`.
+
 
 
 
