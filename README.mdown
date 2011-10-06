@@ -1,0 +1,109 @@
+# statline.vim : Improved status line for Vim
+
+[https://github.com/millermedeiros/vim-statline](https://github.com/millermedeiros/vim-statline)
+
+Add useful informations to the `statusline`.
+
+Based on [gf3/.vimrc](https://github.com/gf3/dotfiles) and the statusline
+from [factorylabs/vimfiles](https://github.com/factorylabs/vimfiles).
+
+
+
+## Screenshots
+
+### Details
+
+![detail 01](https://github.com/millermedeiros/Hasher/raw/master/_assets/statline_details_01.png "statline description #1")
+![detail 02](https://github.com/millermedeiros/Hasher/raw/master/_assets/statline_details_02.png "statline description #2")
+
+### It automatically adapts to color schemes
+
+#### molokai
+![colorscheme example 1](https://github.com/millermedeiros/Hasher/raw/master/_assets/ss_01.png "colorscheme example 1")
+
+#### solarized
+![colorscheme example 2](https://github.com/millermedeiros/Hasher/raw/master/_assets/ss_02.png "colorscheme example 2")
+
+#### darkblue
+![mixed indenting](https://github.com/millermedeiros/Hasher/raw/master/_assets/ss_mi.png "mixed indenting example")
+
+
+
+## Settings
+
+### Enable/Disable Syntastic errors
+
+[Syntastic](https://github.com/scrooloose/syntastic/) integration is enabled
+by default, to disable it:
+
+```vim
+" disable syntastic on the statusline
+let g:statline_syntastic = 0
+```
+
+### Enable/Disable vim-fugitive status
+
+[vim-fugitive](https://github.com/tpope/vim-fugitive) isn't enabled by default,
+to enable it:
+
+```vim
+" enable fugitive statusline
+let g:statline_fugitive = 1
+```
+
+### Enable/Disable mixed indentation check
+
+vim-statline will check for mixed indentation at each save and also when idle
+by default, to disable it:
+
+```vim
+" disable mixed indentation check
+let g:statline_trailing_space = 0
+```
+
+### Enable/Disable trailing spaces check
+
+vim-statline will check for trailing white spaces at each save and also when
+idle by default, to disable it:
+
+```vim
+" disable mixed indentation check
+let g:statline_mixed_indent = 0
+```
+
+
+### Colors
+
+Statline adapts to your colorcheme without any extra settings but if you want
+to customize it it's very simple.
+
+The colors are set by `hl-User1..4` and linked to your colorcheme colors, here
+are the default settings:
+
+```vim
+" filename
+hi link User1 Identifier
+" flags
+hi link User2 Statement
+" errors
+hi link User3 Error
+" fugitive
+hi link User4 Special
+```
+
+you can change these colors inside your .vimrc file, eg:
+
+```vim
+hi link User2 Constant
+hi User3 guifg=#FFFFFF guibg=#FF0000 gui=bold ctermfg=15 ctermbg=1 cterm=bold
+```
+
+to check the existing Syntax highlighting groups and their colors use the
+command `:so $VIMRUNTIME/syntax/hitest.vim`
+
+
+
+## License
+
+Released under the [WTFPL](http://sam.zoy.org/wtfpl/).
+
