@@ -13,23 +13,24 @@ from [factorylabs/vimfiles](https://github.com/factorylabs/vimfiles).
 
 ### Details
 
-![detail 01](https://github.com/millermedeiros/vim-statline/raw/master/_assets/statline_details_01.png "statline description #1")
-![detail 02](https://github.com/millermedeiros/vim-statline/raw/master/_assets/statline_details_02.png "statline description #2")
+![detail 01](https://github.com/millermedeiros/vim-statline/raw/dd9529564a/_assets/statline_details_01.png "statline description #1")
+![detail 02](https://github.com/millermedeiros/vim-statline/raw/dd9529564a/_assets/statline_details_02.png "statline description #2")
 
 ### It automatically adapts to color schemes
 
 #### molokai
-![colorscheme example 1](https://github.com/millermedeiros/vim-statline/raw/master/_assets/ss_01.png "colorscheme example 1")
+![colorscheme example 1](https://github.com/millermedeiros/vim-statline/raw/dd9529564a/_assets/ss_01.png "colorscheme example 1")
 
 #### solarized
-![colorscheme example 2](https://github.com/millermedeiros/vim-statline/raw/master/_assets/ss_02.png "colorscheme example 2")
+![colorscheme example 2](https://github.com/millermedeiros/vim-statline/raw/dd9529564a/_assets/ss_02.png "colorscheme example 2")
 
 #### darkblue
-![mixed indenting](https://github.com/millermedeiros/vim-statline/raw/master/_assets/ss_mi.png "mixed indenting example")
+![mixed indenting](https://github.com/millermedeiros/vim-statline/raw/dd9529564a/_assets/ss_mi.png "mixed indenting example")
 
 
 
 ## Settings
+
 
 ### Enable/Disable Syntastic errors
 
@@ -41,6 +42,10 @@ by default, to disable it:
 let g:statline_syntastic = 0
 ```
 
+To customize syntastic statusline text format see:
+`:h 'syntastic_stl_format'`.
+
+
 ### Enable/Disable vim-fugitive status
 
 [vim-fugitive](https://github.com/tpope/vim-fugitive) isn't enabled by default,
@@ -51,6 +56,7 @@ to enable it:
 let g:statline_fugitive = 1
 ```
 
+
 ### Enable/Disable mixed indentation check
 
 vim-statline will check for mixed indentation at each save and also when idle
@@ -60,6 +66,7 @@ by default, to disable it:
 " disable mixed indentation check
 let g:statline_trailing_space = 0
 ```
+
 
 ### Enable/Disable trailing spaces check
 

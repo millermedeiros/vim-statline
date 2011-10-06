@@ -46,14 +46,11 @@ set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]
 " separation between left/right aligned items
 set statusline+=%=
 
-" current line and column (-:left align, 16:minwid, l:line, L:nLines, c:column)
+" current line and column (-:left align, 14:minwid, l:line, L:nLines, c:column)
 set statusline+=%-14(\ L%l/%L:C%c\ %)
 " scroll percent
 set statusline+=%P
 
-
-
-" ====== plugins ======
 
 
 " Fugitive
@@ -108,7 +105,7 @@ endfunction
 
 if g:statline_mixed_indent
     set statusline+=%3*%{StatlineTabWarning()}%*
-    " recalculate when idle and after writing   
+    " recalculate when idle and after writing
     autocmd cursorhold,bufwritepost * unlet! b:statline_indent_warning
 endif
 
@@ -127,7 +124,7 @@ function! StatlineTrailingSpaceWarning()
             let b:statline_trailing_space_warning = ''
         endif
     endif
-    return b:statline_trailing_space_warning
+    return b:statline_trailing_space_warnins
 endfunction
 
 if g:statline_trailing_space
