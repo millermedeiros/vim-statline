@@ -7,6 +7,7 @@ CONTENTS                                                            *statline*
     2.Options......................................|statline-options|
     3.Credits......................................|statline-credits|
     4.License......................................|statline-license|
+    5.Changelog....................................|statline-changelog|
 
 
 ==============================================================================
@@ -128,9 +129,41 @@ command >
 This plugin is heavily based on the Vim settings from @factorylabs and also
 @gf3 (Gianni Chiappetta) settings. It was assembled by Miller Medeiros.
 
+Other contributors:
+
+ - @mkitt
+
 
 ==============================================================================
 4. License                                                  *statline-license*
 
 statline is released under the wtfpl http://sam.zoy.org/wtfpl/COPYING
+
+
+==============================================================================
+5. Changelog                                              *statline-changelog*
+
+
+v0.2.1 (2011/10/17)
+
+    - Fix expand-tab RegExp (#8)
+    - Always display statusline. (#3)
+    - Check if syntastic exists before calling it. (#6)
+
+
+------------------------------------------------------------------------------
+
+v0.2.0 (2011/10/17)
+
+    - RVM integration (@mkitt)
+    - Toggle file format (@mkitt)
+    - Relative path on filename (@mkitt)
+
+
+------------------------------------------------------------------------------
+
+v0.1.0 (2011/10/06)
+
+    - initial release
+
 
