@@ -38,6 +38,13 @@ See |'syntastic_stl_format'| for customization info.
 <
 
 ------------------------------------------------------------------------------
+                                                         *'statline_rvm'*
+
+|rvm| integration is disabled by default, to enable it: >
+    let g:statline_rvm = 1
+<
+
+------------------------------------------------------------------------------
                                                    *'statline_trailing_space'*
 
 Some languages are sensitive about trailing spaces, statline will check for

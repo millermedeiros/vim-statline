@@ -52,6 +52,14 @@ set statusline+=%-14(\ L%l/%L:C%c\ %)
 set statusline+=%P
 
 
+" RVM
+if !exists('g:statline_rvm')
+    let g:statline_rvm = 0
+endif
+if g:statline_rvm
+    set statusline+=%{rvm#statusline()}
+endif
+
 
 " Fugitive
 if !exists('g:statline_fugitive')
