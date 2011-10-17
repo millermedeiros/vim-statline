@@ -30,82 +30,8 @@ from [factorylabs/vimfiles](https://github.com/factorylabs/vimfiles).
 
 ## Settings
 
-
-### Enable/Disable Syntastic errors
-
-[Syntastic](https://github.com/scrooloose/syntastic/) integration is enabled
-by default, to disable it:
-
-```vim
-" disable syntastic on the statusline
-let g:statline_syntastic = 0
-```
-
-To customize syntastic statusline text format see:
-`:h 'syntastic_stl_format'`.
-
-
-### Enable/Disable vim-fugitive status
-
-[vim-fugitive](https://github.com/tpope/vim-fugitive) isn't enabled by default,
-to enable it:
-
-```vim
-" enable fugitive statusline
-let g:statline_fugitive = 1
-```
-
-
-### Enable/Disable mixed indentation check
-
-statline will check for mixed indentation at each save and also when idle
-by default, to disable it:
-
-```vim
-" disable mixed indentation check
-let g:statline_mixed_indent = 0
-```
-
-
-### Enable/Disable trailing spaces check
-
-vim-statline will check for trailing white spaces at each save and also when
-idle by default, to disable it:
-
-```vim
-" disable trailing space check
-let g:statline_trailing_space = 0
-```
-
-
-### Colors
-
-Statline adapts to your colorcheme without any extra settings but if you want
-to customize it it's very simple.
-
-The colors are set by `hl-User1..4` and linked to your colorcheme colors, here
-are the default settings:
-
-```vim
-" filename
-hi link User1 Identifier
-" flags
-hi link User2 Statement
-" errors
-hi link User3 Error
-" fugitive
-hi link User4 Special
-```
-
-You can change these colors inside your .vimrc file, eg:
-
-```vim
-hi link User2 Constant
-hi User3 guifg=#FFFFFF guibg=#FF0000 gui=bold ctermfg=15 ctermbg=1 cterm=bold
-```
-
-To check the existing Syntax highlighting groups and their colors use the
-command `:so $VIMRUNTIME/syntax/hitest.vim`
+Statline have a few settings to toggle the display of items, check
+`help statline` for all the available options.
 
 
 
