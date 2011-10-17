@@ -34,14 +34,26 @@ hi default link User4 Special
 
 " buffer number (always shown)
 set statusline=[%n]\ %<
-" filename (tail)
-set statusline+=%1*[%t]%*
+
+" filename (relative or tail)
+if exists('g:statline_filename_relative')
+    set statusline+=%1*[%f]%*
+else
+    set statusline+=%1*[%t]%*
+endif
+
 " flags (h:help:[help], w:window:[Preview], m:modified:[+][-], r:readonly:[RO])
 set statusline+=%2*%h%w%m%r%*
 " filetype
 set statusline+=\ %y
+
 " file format → file encoding
-set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]
+if !exists('g:statline_show_encoding')
+    let g:statline_show_encoding = 1
+endif
+if g:statline_show_encoding
+    set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]
+endif
 
 " separation between left/right aligned items
 set statusline+=%=
@@ -51,6 +63,14 @@ set statusline+=%-14(\ L%l/%L:C%c\ %)
 " scroll percent
 set statusline+=%P
 
+
+" RVM
+if !exists('g:statline_rvm')
+    let g:statline_rvm = 0
+endif
+if g:statline_rvm
+    set statusline+=%{rvm#statusline()}
+endif
 
 
 " Fugitive
