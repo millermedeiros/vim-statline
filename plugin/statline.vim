@@ -109,9 +109,8 @@ function! StatlineTabWarning()
     if !exists("b:statline_indent_warning")
         let tabs = search('^\t', 'nw') != 0
         " ignore spaces just before JavaDoc style comments
-        let spaces = search('^ \(?<!*\)', 'nw') != 0
-        let mixed = search('^\( \+\t\|\t\+ \+\(?<!*\)\)', 'nw') != 0
-
+        let spaces = search('^ \+\*\@!', 'nw') != 0
+        let mixed = search('^\( \+\t\|\t\+ \+\*\@!\)', 'nw') != 0
         if mixed
             let b:statline_indent_warning =  '[mixed-indenting]'
         elseif (spaces && !&et) || (tabs && &et)
