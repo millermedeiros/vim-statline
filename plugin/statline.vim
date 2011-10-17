@@ -34,8 +34,14 @@ hi default link User4 Special
 
 " buffer number (always shown)
 set statusline=[%n]\ %<
-" filename (tail)
-set statusline+=%1*[%t]%*
+
+" filename (relative or tail)
+if exists('g:statline_filename_relative')
+    set statusline+=%1*[%f]%*
+else
+    set statusline+=%1*[%t]%*
+endif
+
 " flags (h:help:[help], w:window:[Preview], m:modified:[+][-], r:readonly:[RO])
 set statusline+=%2*%h%w%m%r%*
 " filetype

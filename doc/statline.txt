@@ -54,6 +54,15 @@ Set the following to disable it: >
 <
 
 ------------------------------------------------------------------------------
+                                                *'statline_filename_relative'*
+
+If set, will show the relative path (from cwd) to the file, otherwise it will
+only show the filename. Set the following to show by relative paths: >
+
+    let g:statline_filename_relative = 1
+<
+
+------------------------------------------------------------------------------
                                                    *'statline_trailing_space'*
 
 Some languages are sensitive about trailing spaces, statline will check for
