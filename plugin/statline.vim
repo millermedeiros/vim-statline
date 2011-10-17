@@ -10,6 +10,11 @@
 "              See http://sam.zoy.org/wtfpl/COPYING for more details.
 " ============================================================================
 
+if exists("g:loaded_statline_plugin")
+    finish
+endif
+let g:loaded_statline_plugin = 1
+
 
 " always display statusline (iss #3)
 set laststatus=2
@@ -67,6 +72,9 @@ set statusline+=%-14(\ L%l/%L:C%c\ %)
 set statusline+=%P
 
 
+" ====== plugins ======
+
+
 " RVM
 if !exists('g:statline_rvm')
     let g:statline_rvm = 0
@@ -90,9 +98,17 @@ if !exists('g:statline_syntastic')
     let g:statline_syntastic = 1
 endif
 if g:statline_syntastic
-    set statusline+=\ %3*%{SyntasticStatuslineFlag()}%*
+    set statusline+=\ %3*%{StatlineSyntastic()}%*
 endif
 
+function! StatlineSyntastic()
+    " safe guard against syntastic being only loaded after statline
+    if exists('g:loaded_syntastic_plugin')
+        return SyntasticStatuslineFlag()
+    else
+        return ''
+    endif
+endfunction
 
 
 
