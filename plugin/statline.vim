@@ -40,8 +40,14 @@ set statusline+=%1*[%t]%*
 set statusline+=%2*%h%w%m%r%*
 " filetype
 set statusline+=\ %y
+
 " file format → file encoding
-set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]
+if !exists('g:statline_show_encoding')
+    let g:statline_show_encoding = 1
+endif
+if g:statline_show_encoding
+    set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]
+endif
 
 " separation between left/right aligned items
 set statusline+=%=

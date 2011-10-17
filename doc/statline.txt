@@ -45,6 +45,15 @@ See |'syntastic_stl_format'| for customization info.
 <
 
 ------------------------------------------------------------------------------
+                                                    *'statline_show_encoding'*
+
+Whether or not to show the file format and encoding type (default is on)
+Set the following to disable it: >
+
+    let g:statline_show_encoding = 0
+<
+
+------------------------------------------------------------------------------
                                                    *'statline_trailing_space'*
 
 Some languages are sensitive about trailing spaces, statline will check for
