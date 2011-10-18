@@ -71,6 +71,14 @@ set statusline+=%-14(\ L%l/%L:C%c\ %)
 " scroll percent
 set statusline+=%P
 
+" code of character under cursor
+if !exists('g:statline_show_charcode')
+    let g:statline_show_charcode = 0
+endif
+if g:statline_show_charcode
+    set statusline+=%9(\ \%b/0x\%B%)
+endif
+
 
 " ====== plugins ======
 
