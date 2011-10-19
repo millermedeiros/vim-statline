@@ -96,6 +96,14 @@ Mixed indent errors:~
                         marking JavaDoc style comments as mixed indent.
 
 ------------------------------------------------------------------------------
+                                                    *'statline_show_charcode'*
+
+If set, will show the code of the character currently under the cursor. It is
+disabled by default. Set the following to enable it: >
+    let g:statline_show_charcode = 1
+<
+
+------------------------------------------------------------------------------
                                                              *statline-colors*
 
 Statline adapts to your colorcheme without any extra settings but if you want
