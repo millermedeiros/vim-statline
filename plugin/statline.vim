@@ -72,6 +72,9 @@ set statusline+=%-14(\ L%l/%L:C%c\ %)
 set statusline+=%P
 
 " code of character under cursor (b:num, B:hex)
+if !exists('g:statline_show_charcode')
+	let g:statline_show_charcode = 0
+endif
 if g:statline_show_charcode
     set statusline+=%9(\ \%b/0x\%B%)
 endif
@@ -81,12 +84,18 @@ endif
 
 
 " RVM
+if !exists('g:statline_rvm')
+    let g:statline_rvm = 0
+endif
 if g:statline_rvm
     set statusline+=%{rvm#statusline()}
 endif
 
 
 " Fugitive
+if !exists('g:statline_fugitive')
+    let g:statline_fugitive = 0
+endif
 if g:statline_fugitive
     set statusline+=%4*%{fugitive#statusline()}%*
 endif
