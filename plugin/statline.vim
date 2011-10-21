@@ -59,8 +59,11 @@ set statusline+=\ %y
 if !exists('g:statline_show_encoding')
     let g:statline_show_encoding = 1
 endif
+if !exists('g:statline_no_encoding_string')
+	let g:statline_no_encoding_string = 'No Encoding'
+endif
 if g:statline_show_encoding
-    set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:'No\ Encoding'}]
+    set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
 " separation between left/right aligned items

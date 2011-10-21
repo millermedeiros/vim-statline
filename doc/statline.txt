@@ -55,6 +55,16 @@ Set the following to disable it: >
 <
 
 ------------------------------------------------------------------------------
+                                               *'statline_no_encoding_string'*
+
+The text to show in the status line when the encoding is unknown (default is
+'No Encoding').
+Set it to your liking: >
+
+    let g:statline_no_encoding_string = 'NONE'
+<
+
+------------------------------------------------------------------------------
                                                 *'statline_filename_relative'*
 
 If set, will show the relative path (from cwd) to the file, otherwise it will
@@ -142,7 +152,7 @@ Other contributors:
 
  - @mkitt
  - @Idx
-
+ - @knl
 
 ==============================================================================
 4. License                                                  *statline-license*
