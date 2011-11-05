@@ -39,9 +39,20 @@ hi default link User4 Special
 
 " ====== basic info ======
 
+" number of buffers | buffer number
+function! StatlineBufCount()
+    return len(filter(range(1,bufnr('$')), 'buflisted(v:val)'))
+endfunction
 
-" buffer number (always shown)
-set statusline=[%n]\ %<
+if !exists('g:statline_show_n_buffers')
+    let g:statline_show_n_buffers = 1
+endif
+
+if g:statline_show_n_buffers
+    set statusline=[%{StatlineBufCount()}\:%n]\ %<
+else
+    set statusline=[%n]\ %<
+endif
 
 " filename (relative or tail)
 if exists('g:statline_filename_relative')
@@ -60,7 +71,7 @@ if !exists('g:statline_show_encoding')
     let g:statline_show_encoding = 1
 endif
 if !exists('g:statline_no_encoding_string')
-	let g:statline_no_encoding_string = 'No Encoding'
+    let g:statline_no_encoding_string = 'No Encoding'
 endif
 if g:statline_show_encoding
     set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
@@ -76,7 +87,7 @@ set statusline+=%P
 
 " code of character under cursor (b:num, B:hex)
 if !exists('g:statline_show_charcode')
-	let g:statline_show_charcode = 0
+    let g:statline_show_charcode = 0
 endif
 if g:statline_show_charcode
     set statusline+=%9(\ \%b/0x\%B%)

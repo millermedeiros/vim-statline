@@ -39,10 +39,18 @@ See |'syntastic_stl_format'| for customization info.
 <
 
 ------------------------------------------------------------------------------
-                                                         *'statline_rvm'*
+                                                              *'statline_rvm'*
 
 |rvm| integration is disabled by default, to enable it: >
     let g:statline_rvm = 1
+<
+
+------------------------------------------------------------------------------
+                                                   *'statline_show_n_buffers'*
+
+If it should show the number of active buffers before the buffer number
+(default is on). Set the following to disable it: >
+    let g:statline_show_n_buffers = 0
 <
 
 ------------------------------------------------------------------------------
@@ -163,21 +171,29 @@ statline is released under the wtfpl http://sam.zoy.org/wtfpl/COPYING
 ==============================================================================
 5. Changelog                                              *statline-changelog*
 
+Next
+
+    - Add |'statline_show_charcode'| (@knl)
+    - Add |'statline_no_encoding_string'| (@knl)
+    - Add |'statline_show_n_buffers'| [#2]
+
+
+------------------------------------------------------------------------------
 
 v0.2.1 (2011/10/17)
 
-    - Fix expand-tab RegExp (#8)
-    - Always display statusline. (#3)
-    - Check if syntastic exists before calling it. (#6)
+    - Fix expand-tab RegExp [#8]
+    - Always display statusline. [#3]
+    - Check if syntastic exists before calling it. [#6]
 
 
 ------------------------------------------------------------------------------
 
 v0.2.0 (2011/10/17)
 
-    - RVM integration (@mkitt)
-    - Toggle file format (@mkitt)
-    - Relative path on filename (@mkitt)
+    - RVM integration |'statline_rvm'| (@mkitt)
+    - Toggle file format and encoding |'statline_show_encoding'| (@mkitt)
+    - Relative path on filename |'statline_filename_relative'| (@mkitt)
 
 
 ------------------------------------------------------------------------------
