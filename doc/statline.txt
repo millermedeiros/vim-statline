@@ -176,6 +176,7 @@ Next
     - Add |'statline_show_charcode'| (@knl)
     - Add |'statline_no_encoding_string'| (@knl)
     - Add |'statline_show_n_buffers'| [#2]
+    - Fix problem with non-utf8 encoding. [#13]
 
 
 ------------------------------------------------------------------------------

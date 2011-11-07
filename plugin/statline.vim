@@ -2,7 +2,7 @@
 " File:        statline.vim
 " Maintainer:  Miller Medeiros <http://blog.millermedeiros.com/>
 " Description: Add useful info to the statusline and basic error checking.
-" Last Change: October 05, 2011
+" Last Change: 2011-11-07
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -67,6 +67,12 @@ set statusline+=%2*%h%w%m%r%*
 set statusline+=\ %y
 
 " file format → file encoding
+if &encoding == 'utf-8'
+    let g:statline_encoding_separator = '→'
+else
+    let g:statline_encoding_separator = ':'
+endif
+
 if !exists('g:statline_show_encoding')
     let g:statline_show_encoding = 1
 endif
@@ -74,7 +80,7 @@ if !exists('g:statline_no_encoding_string')
     let g:statline_no_encoding_string = 'No Encoding'
 endif
 if g:statline_show_encoding
-    set statusline+=[%{&ff}→%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
+    set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
 " separation between left/right aligned items
