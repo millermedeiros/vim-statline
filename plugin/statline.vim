@@ -140,7 +140,17 @@ if !exists('g:statline_rvm')
     let g:statline_rvm = 0
 endif
 if g:statline_rvm
-    set statusline+=%{rvm#statusline()}
+    set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
+endif
+
+
+" ---- rbenv ----
+
+if !exists('g:statline_rbenv')
+    let g:statline_rbenv = 0
+endif
+if g:statline_rbenv
+    set statusline+=%{exists('g:loaded_rbenv')?rbenv#statusline():''}
 endif
 
 
@@ -150,7 +160,7 @@ if !exists('g:statline_fugitive')
     let g:statline_fugitive = 0
 endif
 if g:statline_fugitive
-    set statusline+=%4*%{fugitive#statusline()}%*
+    set statusline+=%4*%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
 endif
 
 
@@ -160,17 +170,8 @@ if !exists('g:statline_syntastic')
     let g:statline_syntastic = 1
 endif
 if g:statline_syntastic
-    set statusline+=\ %3*%{StatlineSyntastic()}%*
+    set statusline+=\ %3*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
 endif
-
-function! StatlineSyntastic()
-    " safe guard against syntastic being only loaded after statline
-    if exists('g:loaded_syntastic_plugin')
-        return SyntasticStatuslineFlag()
-    else
-        return ''
-    endif
-endfunction
 
 
 

@@ -46,6 +46,13 @@ See |'syntastic_stl_format'| for customization info.
 <
 
 ------------------------------------------------------------------------------
+                                                            *'statline_rbenv'*
+
+|rbenv| integration is disabled by default, to enable it: >
+    let g:statline_rbenv = 1
+<
+
+------------------------------------------------------------------------------
                                                    *'statline_show_n_buffers'*
 
 If it should show the number of active buffers before the buffer number
@@ -176,7 +183,13 @@ Next
     - Add |'statline_show_charcode'| (@knl)
     - Add |'statline_no_encoding_string'| (@knl)
     - Add |'statline_show_n_buffers'| [#2]
+    - Add |'statline_rbenv'| [#15]
     - Fix problem with non-utf8 encoding. [#13]
+    - Create |augroup| to wrap all |autocmd| and make sure commands are cleared
+      before adding new ones, avoids setting same command multiple times.
+    - Add safe checks to all plugins to make sure they aren't called if they
+      don't exist, make it more portable since users may copy vimrc files that
+      enable plugin integration.
 
 
 ------------------------------------------------------------------------------
