@@ -153,8 +153,8 @@ command >
 3. Credits                                                  *statline-credits*
 
 This plugin is heavily based on the Vim settings from @factorylabs and also
-@gf3 (Gianni Chiappetta) settings. It was assembled by @millermedeiros (Miller
-Medeiros).
+@gf3 (Gianni Chiappetta) settings. It was originally assembled by
+@millermedeiros (Miller Medeiros).
 
 Other contributors:
 

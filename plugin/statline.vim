@@ -2,7 +2,7 @@
 " File:        statline.vim
 " Maintainer:  Miller Medeiros <http://blog.millermedeiros.com/>
 " Description: Add useful info to the statusline and basic error checking.
-" Last Change: 2011-11-07
+" Last Change: 2011-11-10
 " License:     This program is free software. It comes without any warranty,
 "              to the extent permitted by applicable law. You can redistribute
 "              it and/or modify it under the terms of the Do What The Fuck You
@@ -39,9 +39,13 @@ hi default link User4 Special
 
 " ====== basic info ======
 
-" number of buffers | buffer number
+" ---- number of buffers : buffer number ----
+
 function! StatlineBufCount()
-    return len(filter(range(1,bufnr('$')), 'buflisted(v:val)'))
+    if !exists("s:statline_n_buffers")
+        let s:statline_n_buffers = len(filter(range(1,bufnr('$')), 'buflisted(v:val)'))
+    endif
+    return s:statline_n_buffers
 endfunction
 
 if !exists('g:statline_show_n_buffers')
@@ -50,23 +54,38 @@ endif
 
 if g:statline_show_n_buffers
     set statusline=[%{StatlineBufCount()}\:%n]\ %<
+    " only calculate buffers after adding/removing buffers
+    augroup statline_nbuf
+        autocmd!
+        autocmd BufAdd,BufDelete * unlet! s:statline_n_buffers
+    augroup END
 else
     set statusline=[%n]\ %<
 endif
 
-" filename (relative or tail)
+
+" ---- filename (relative or tail) ----
+
 if exists('g:statline_filename_relative')
     set statusline+=%1*[%f]%*
 else
     set statusline+=%1*[%t]%*
 endif
 
-" flags (h:help:[help], w:window:[Preview], m:modified:[+][-], r:readonly:[RO])
+
+" ---- flags ----
+
+" (h:help:[help], w:window:[Preview], m:modified:[+][-], r:readonly:[RO])
 set statusline+=%2*%h%w%m%r%*
-" filetype
+
+
+" ---- filetype ----
+
 set statusline+=\ %y
 
-" file format → file encoding
+
+" ---- file format → file encoding ----
+
 if &encoding == 'utf-8'
     let g:statline_encoding_separator = '→'
 else
@@ -83,27 +102,40 @@ if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
-" separation between left/right aligned items
+
+" ---- separation between left/right aligned items ----
+
 set statusline+=%=
 
-" current line and column (-:left align, 14:minwid, l:line, L:nLines, c:column)
+
+" ---- current line and column ----
+
+" (-:left align, 14:minwid, l:line, L:nLines, c:column)
 set statusline+=%-14(\ L%l/%L:C%c\ %)
-" scroll percent
+
+
+" ----  scroll percent ----
+
 set statusline+=%P
 
-" code of character under cursor (b:num, B:hex)
+
+" ---- code of character under cursor ----
+
 if !exists('g:statline_show_charcode')
     let g:statline_show_charcode = 0
 endif
 if g:statline_show_charcode
+    " (b:num, B:hex)
     set statusline+=%9(\ \%b/0x\%B%)
 endif
+
 
 
 " ====== plugins ======
 
 
-" RVM
+" ---- RVM ----
+
 if !exists('g:statline_rvm')
     let g:statline_rvm = 0
 endif
@@ -112,7 +144,8 @@ if g:statline_rvm
 endif
 
 
-" Fugitive
+" ---- Fugitive ----
+
 if !exists('g:statline_fugitive')
     let g:statline_fugitive = 0
 endif
@@ -121,7 +154,8 @@ if g:statline_fugitive
 endif
 
 
-" Syntastic errors
+" ---- Syntastic errors ----
+
 if !exists('g:statline_syntastic')
     let g:statline_syntastic = 1
 endif
@@ -171,8 +205,12 @@ endfunction
 
 if g:statline_mixed_indent
     set statusline+=%3*%{StatlineTabWarning()}%*
+
     " recalculate when idle and after writing
-    autocmd cursorhold,bufwritepost * unlet! b:statline_indent_warning
+    augroup statline_indent
+        autocmd!
+        autocmd cursorhold,bufwritepost * unlet! b:statline_indent_warning
+    augroup END
 endif
 
 
@@ -195,6 +233,10 @@ endfunction
 
 if g:statline_trailing_space
     set statusline+=%3*%{StatlineTrailingSpaceWarning()}%*
+
     " recalculate when idle, and after saving
-    autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
+    augroup statline_trail
+        autocmd!
+        autocmd cursorhold,bufwritepost * unlet! b:statline_trailing_space_warning
+    augroup END
 endif
