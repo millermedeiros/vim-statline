@@ -187,18 +187,26 @@ if !exists('g:statline_mixed_indent')
     let g:statline_mixed_indent = 1
 endif
 
+"return '[&et]' if &et is set wrong
+"return '[mixed-indenting]' if spaces and tabs are used to indent
+"return an empty string if everything is fine
 function! StatlineTabWarning()
     if !exists("b:statline_indent_warning")
+        let b:statline_indent_warning = ''
+
+        if !&modifiable
+            return b:statline_indent_warning
+        endif
+
         let tabs = search('^\t', 'nw') != 0
-        " ignore spaces just before JavaDoc style comments
-        let spaces = search('^ \+\*\@!', 'nw') != 0
-        let mixed = search('^\( \+\t\|\t\+ \+\*\@!\)', 'nw') != 0
-        if mixed
+
+        "find spaces that arent used as alignment in the first indent column
+        let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
+
+        if tabs && spaces
             let b:statline_indent_warning =  '[mixed-indenting]'
         elseif (spaces && !&et) || (tabs && &et)
             let b:statline_indent_warning = '[&et]'
-        else
-            let b:statline_indent_warning = ''
         endif
     endif
     return b:statline_indent_warning
