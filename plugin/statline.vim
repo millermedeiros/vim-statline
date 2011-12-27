@@ -178,7 +178,8 @@ endif
 " ====== custom errors ======
 
 
-" these methods were based on factorylabs/vimfiles
+" based on @scrooloose whitespace flags
+" http://got-ravings.blogspot.com/2008/10/vim-pr0n-statusline-whitespace-flags.html
 
 
 " ---- mixed indenting ----
