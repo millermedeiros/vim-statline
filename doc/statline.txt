@@ -121,6 +121,14 @@ Mixed indent errors:~
                         marking JavaDoc style comments as mixed indent.
 
 ------------------------------------------------------------------------------
+                                              *'statline_mixed_indent_string'*
+
+Message shown when file contains mixed tabs & spaces. Defaults to
+'[mixed-indenting]'. To edit it: >
+    let g:statline_mixed_indent_string = '[mix]'
+<
+
+------------------------------------------------------------------------------
                                                     *'statline_show_charcode'*
 
 If set, will show the code of the character currently under the cursor. It is
@@ -195,6 +203,14 @@ statline is released under the wtfpl http://sam.zoy.org/wtfpl/COPYING
 
 ==============================================================================
 5. Changelog                                              *statline-changelog*
+
+
+Next
+
+    - Add |'statline_mixed_indent_string'|
+
+
+------------------------------------------------------------------------------
 
 v0.3.0 (2011/12/27)
 

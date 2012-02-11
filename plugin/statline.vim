@@ -188,6 +188,10 @@ if !exists('g:statline_mixed_indent')
     let g:statline_mixed_indent = 1
 endif
 
+if !exists('g:statline_mixed_indent_string')
+    let g:statline_mixed_indent_string = '[mixed-indenting]'
+endif
+
 "return '[&et]' if &et is set wrong
 "return '[mixed-indenting]' if spaces and tabs are used to indent
 "return an empty string if everything is fine
@@ -205,7 +209,7 @@ function! StatlineTabWarning()
         let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
 
         if tabs && spaces
-            let b:statline_indent_warning =  '[mixed-indenting]'
+            let b:statline_indent_warning = g:statline_mixed_indent_string
         elseif (spaces && !&et) || (tabs && &et)
             let b:statline_indent_warning = '[&et]'
         endif
