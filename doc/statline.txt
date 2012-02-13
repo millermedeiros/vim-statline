@@ -110,12 +110,12 @@ feature set: >
     let g:statline_mixed_indent = 0
 <
 
-                                *statline-[&et]*  *statline-[mixed-indenting]*
+                                            *statline-[&et]*  *statline-[mix]*
 Mixed indent errors:~
     [&et]               Warn if using different tab format than the one
                         specified by |expandtab| or |noet|.
 
-    [mixed-indenting]   Warn if mixed tabs & spaces are used for indenting on
+    [mix]               Warn if mixed tabs & spaces are used for indenting on
                         the same line.
                         PS: it will ignore spaces just before `*` to avoid
                         marking JavaDoc style comments as mixed indent.
@@ -124,8 +124,8 @@ Mixed indent errors:~
                                               *'statline_mixed_indent_string'*
 
 Message shown when file contains mixed tabs & spaces. Defaults to
-'[mixed-indenting]'. To edit it: >
-    let g:statline_mixed_indent_string = '[mix]'
+'[mix]'. To edit it: >
+    let g:statline_mixed_indent_string = '[mixed-indenting]'
 <
 
 ------------------------------------------------------------------------------
@@ -207,7 +207,8 @@ statline is released under the wtfpl http://sam.zoy.org/wtfpl/COPYING
 
 Next
 
-    - Add |'statline_mixed_indent_string'|
+    - Add |'statline_mixed_indent_string'| and change default string to
+      "[mix]" for brevity. [#19]
 
 
 ------------------------------------------------------------------------------

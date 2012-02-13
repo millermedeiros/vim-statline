@@ -189,7 +189,7 @@ if !exists('g:statline_mixed_indent')
 endif
 
 if !exists('g:statline_mixed_indent_string')
-    let g:statline_mixed_indent_string = '[mixed-indenting]'
+    let g:statline_mixed_indent_string = '[mix]'
 endif
 
 "return '[&et]' if &et is set wrong
