@@ -63,6 +63,14 @@ else
     set statusline=[%n]\ %<
 endif
 
+" ---- filepath ----
+if !exists('g:statline_show_filepath')
+    let g:statline_show_filepath=0
+endif
+
+if g:statline_show_filepath
+    set statusline+=[%{getcwd()}]\ 
+endif
 
 " ---- filename (relative or tail) ----
 
@@ -72,12 +80,19 @@ else
     set statusline+=%1*[%t]%*
 endif
 
-
 " ---- flags ----
 
 " (h:help:[help], w:window:[Preview], m:modified:[+][-], r:readonly:[RO])
 set statusline+=%2*%h%w%m%r%*
 
+" ---- file modified time ----
+if !exists('g:statline_show_savetime')
+    let g:statline_show_savetime=0
+endif
+
+if g:statline_show_savetime
+    set statusline+=\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}
+endif
 
 " ---- filetype ----
 
@@ -101,7 +116,6 @@ endif
 if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
-
 
 " ---- separation between left/right aligned items ----
 
