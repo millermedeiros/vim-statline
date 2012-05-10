@@ -91,7 +91,7 @@ only show the filename. Set the following to show by relative paths: >
 ------------------------------------------------------------------------------
                                                     *'statline_show_filepath'*
 
-If set, will show the current working directory (default is on).
+If set, will show the current working directory (default is off).
 Set the following to hide: >
 
     let g:statline_show_filepath = 0
@@ -100,7 +100,7 @@ Set the following to hide: >
 ------------------------------------------------------------------------------
                                                     *'statline_show_savetime'*
 
-Will show the time, the current file was last modified (default is on).
+Will show the time, the current file was last modified (default is off).
 Set the following to hide: >
 
     let g:statline_show_savetime = 0

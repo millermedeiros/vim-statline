@@ -65,7 +65,7 @@ endif
 
 " ---- filepath ----
 if !exists('g:statline_show_filepath')
-    let g:statline_show_filepath=1
+    let g:statline_show_filepath=0
 endif
 
 if g:statline_show_filepath
@@ -82,7 +82,7 @@ endif
 
 " ---- file modified time ----
 if !exists('g:statline_show_savetime')
-    let g:statline_show_savetime=1
+    let g:statline_show_savetime=0
 endif
 
 if g:statline_show_savetime
