@@ -137,6 +137,14 @@ disabled by default. Set the following to enable it: >
 <
 
 ------------------------------------------------------------------------------
+                                                       *'statline_show_paste'*
+
+If set, will show the status of the 'paste' mode. It is enabled by default. 
+Set the following to disable it: >
+    let g:statline_show_paste = 0
+<
+
+------------------------------------------------------------------------------
                                                              *statline-colors*
 
 Statline adapts to your colorcheme without any extra settings but if you want

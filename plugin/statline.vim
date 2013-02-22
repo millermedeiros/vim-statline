@@ -34,6 +34,8 @@ hi default link User2 Statement
 hi default link User3 Error
 " fugitive
 hi default link User4 Special
+" mode alert
+hi default link User5 ErrorMsg
 
 
 
@@ -102,6 +104,17 @@ if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
+" ---- paste mode ---
+function! Paste()
+    return &paste ? "[PASTE!]" : ""
+endfunction
+
+if !exists('g:statline_show_paste')
+    let g:statline_show_paste = 1
+endif
+if g:statline_show_paste
+    set statusline+=\ %5*%{Paste()}%*
+endif
 
 " ---- separation between left/right aligned items ----
 
