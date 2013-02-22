@@ -115,6 +115,17 @@ if g:statline_show_paste
     set statusline+=\ %5*%{&paste?(g:statline_show_paste_string):''}%*
 endif
 
+" ---- list mode ---
+if !exists('g:statline_show_list')
+    let g:statline_show_list = 1
+endif
+if !exists('g:statline_show_list_string')
+    let g:statline_show_list_string = '[LIST!]'
+endif
+if g:statline_show_list
+    set statusline+=%5*%{&list?(g:statline_show_list_string):''}%*
+endif
+
 " ---- separation between left/right aligned items ----
 
 set statusline+=%=

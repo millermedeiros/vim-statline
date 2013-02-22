@@ -146,6 +146,17 @@ Set the following to disable it: >
 
 The default setting of the g:statline_show_paste_string = '[PASTE!]'
 
+
+------------------------------------------------------------------------------
+                                                        *'statline_show_list'*
+
+If set, will show the status of the 'list' mode. It is enabled by default. Set
+the following to disable it: >
+    let g:statline_show_list = 0
+<
+
+The default setting of the g:statline_show_list_string = '[LIST!]'
+
 ------------------------------------------------------------------------------
                                                              *statline-colors*
 
