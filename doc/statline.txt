@@ -144,6 +144,8 @@ Set the following to disable it: >
     let g:statline_show_paste = 0
 <
 
+The default setting of the g:statline_show_paste_string = '[PASTE!]'
+
 ------------------------------------------------------------------------------
                                                              *statline-colors*
 
@@ -160,6 +162,8 @@ are the default settings: >
     hi link User3 Error
     " fugitive
     hi link User4 Special
+    " mode alert
+    hi link User5 ErrorMsg
 <
 
 You can change these colors inside your .vimrc file, eg: >

@@ -105,15 +105,14 @@ if g:statline_show_encoding
 endif
 
 " ---- paste mode ---
-function! Paste()
-    return &paste ? "[PASTE!]" : ""
-endfunction
-
 if !exists('g:statline_show_paste')
     let g:statline_show_paste = 1
 endif
+if !exists('g:statline_show_paste_string')
+    let g:statline_show_paste_string = '[PASTE!]'
+endif
 if g:statline_show_paste
-    set statusline+=\ %5*%{Paste()}%*
+    set statusline+=\ %5*%{&paste?(g:statline_show_paste_string):''}%*
 endif
 
 " ---- separation between left/right aligned items ----
