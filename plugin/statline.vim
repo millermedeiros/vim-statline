@@ -78,6 +78,8 @@ endif
 
 if exists('g:statline_filename_relative')
     set statusline+=%1*[%f]%*
+elseif exists('g:statline_filename_absolute')
+    set statusline+=%1*[%F]%*
 else
     set statusline+=%1*[%t]%*
 endif
