@@ -41,7 +41,15 @@ hi default link User5 ErrorMsg
 
 " ====== basic info ======
 
+" ---- set default value of variable ----
+function s:SetDefaultVal(var, val)
+    if !exists({'a:var'})
+        let {a:var} = a:val
+    endif
+endfunction
+
 " ---- number of buffers : buffer number ----
+call s:SetDefaultVal('g:statline_show_n_buffers', '1')
 
 function! StatlineBufCount()
     if !exists("s:statline_n_buffers")
@@ -49,10 +57,6 @@ function! StatlineBufCount()
     endif
     return s:statline_n_buffers
 endfunction
-
-if !exists('g:statline_show_n_buffers')
-    let g:statline_show_n_buffers = 1
-endif
 
 if g:statline_show_n_buffers
     set statusline=[%{StatlineBufCount()}\:%n]\ %<
@@ -66,15 +70,14 @@ else
 endif
 
 " ---- filepath ----
-if !exists('g:statline_show_filepath')
-    let g:statline_show_filepath=0
-endif
-
+call s:SetDefaultVal('g:statline_show_filepath', '0')
 if g:statline_show_filepath
     set statusline+=[%{getcwd()}]\ 
 endif
 
 " ---- filename (relative or tail) ----
+call s:SetDefaultVal('g:statline_filename_relative', '0')
+call s:SetDefaultVal('g:statline_filename_absolute', '0')
 
 if exists('g:statline_filename_relative')
     set statusline+=%1*[%f]%*
@@ -85,25 +88,27 @@ else
 endif
 
 " ---- flags ----
-
+call s:SetDefaultVal('g:statline_show_flags', '1')
 " (h:help:[help], w:window:[Preview], m:modified:[+][-], r:readonly:[RO])
-set statusline+=%2*%h%w%m%r%*
+if g:statline_show_flags
+    set statusline+=%2*%h%w%m%r%*
+endif
 
 " ---- file modified time ----
-if !exists('g:statline_show_savetime')
-    let g:statline_show_savetime=0
-endif
+call s:SetDefaultVal('g:statline_show_savetime', '0')
 
 if g:statline_show_savetime
     set statusline+=\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}
 endif
 
 " ---- filetype ----
-
+call s:SetDefaultVal('g:statline_show_filetype', '1')
 set statusline+=\ %y
 
-
 " ---- file format → file encoding ----
+call s:SetDefaultVal('g:statline_show_encoding', '1')
+call s:SetDefaultVal('g:statline_no_encoding_string', 'No Encoding')
+call s:SetDefaultVal('g:statline_show_filetype', '1')
 
 if &encoding == 'utf-8'
     let g:statline_encoding_separator = '→'
@@ -111,34 +116,20 @@ else
     let g:statline_encoding_separator = ':'
 endif
 
-if !exists('g:statline_show_encoding')
-    let g:statline_show_encoding = 1
-endif
-if !exists('g:statline_no_encoding_string')
-    let g:statline_no_encoding_string = 'No Encoding'
-endif
 if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
 " ---- paste mode ---
-if !exists('g:statline_show_paste')
-    let g:statline_show_paste = 1
-endif
-if !exists('g:statline_show_paste_string')
-    let g:statline_show_paste_string = '[PASTE!]'
-endif
+call s:SetDefaultVal('g:statline_show_paste', '1')
+call s:SetDefaultVal('g:statline_show_paste_string', '[PASTE!]')
 if g:statline_show_paste
     set statusline+=\ %5*%{&paste?(g:statline_show_paste_string):''}%*
 endif
 
 " ---- list mode ---
-if !exists('g:statline_show_list')
-    let g:statline_show_list = 1
-endif
-if !exists('g:statline_show_list_string')
-    let g:statline_show_list_string = '[LIST!]'
-endif
+call s:SetDefaultVal('g:statline_show_list', '1')
+call s:SetDefaultVal('g:statline_show_list_string', '[LIST!]')
 if g:statline_show_list
     set statusline+=%5*%{&list?(g:statline_show_list_string):''}%*
 endif
@@ -149,21 +140,20 @@ set statusline+=%=
 
 
 " ---- current line and column ----
-
 " (-:left align, 14:minwid, l:line, L:nLines, c:column)
-set statusline+=%-14(\ L%l/%L:C%c\ %)
-
+call s:SetDefaultVal('g:statline_show_line_col_numbers', '1')
+if g:statline_show_line_col_numbers
+    set statusline+=%-14(\ L%l/%L:C%c\ %)
+endif
 
 " ----  scroll percent ----
-
-set statusline+=%P
-
+call s:SetDefaultVal('g:statline_show_scroll_percent','1')
+if g:statline_show_scroll_percent
+    set statusline+=%P
+endif
 
 " ---- code of character under cursor ----
-
-if !exists('g:statline_show_charcode')
-    let g:statline_show_charcode = 0
-endif
+call s:SetDefaultVal('g:statline_show_charcode','0')
 if g:statline_show_charcode
     " (b:num, B:hex)
     set statusline+=%9(\ \%b/0x\%B%)
@@ -175,40 +165,28 @@ endif
 
 
 " ---- RVM ----
-
-if !exists('g:statline_rvm')
-    let g:statline_rvm = 0
-endif
+call s:SetDefaultVal('g:statline_rvm','0')
 if g:statline_rvm
     set statusline+=%{exists('g:loaded_rvm')?rvm#statusline():''}
 endif
 
 
 " ---- rbenv ----
-
-if !exists('g:statline_rbenv')
-    let g:statline_rbenv = 0
-endif
+call s:SetDefaultVal('g:statline_rbenv', '0')
 if g:statline_rbenv
     set statusline+=%{exists('g:loaded_rbenv')?rbenv#statusline():''}
 endif
 
 
 " ---- Fugitive ----
-
-if !exists('g:statline_fugitive')
-    let g:statline_fugitive = 0
-endif
+call s:SetDefaultVal('g:statline_fugitive', '0')
 if g:statline_fugitive
     set statusline+=%4*%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
 endif
 
 
 " ---- Syntastic errors ----
-
-if !exists('g:statline_syntastic')
-    let g:statline_syntastic = 1
-endif
+call s:SetDefaultVal('g:statline_syntastic', '1')
 if g:statline_syntastic
     set statusline+=\ %3*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
 endif
