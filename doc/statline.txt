@@ -39,6 +39,13 @@ See |'syntastic_stl_format'| for customization info.
 <
 
 ------------------------------------------------------------------------------
+                                                      *'statline_scmfrontend'*
+
+|ScmFrontEnd| integration is disabled by default, to enable it: >
+    let g:statline_scmfrontend = 1
+<
+
+------------------------------------------------------------------------------
                                                               *'statline_rvm'*
 
 |rvm| integration is disabled by default, to enable it: >

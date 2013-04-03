@@ -196,13 +196,26 @@ if g:statline_fugitive
 endif
 "}}}
 
+" ---- ScmFrontEnd ---- {{{
+call s:SetDefaultVal('g:statline_scmfrontend', '0')
+function! SfeStatus()
+    let s:sfe = g:sfe_getStatus()
+    if s:sfe
+      let sfe = "[" s:sfe "]"
+    endif
+    return s:sfe
+endfunction
+if g:statline_scmfrontend
+    set statusline+=\ %4*%{exists('g:sfe_availableScms')?SfeStatus():''}%*
+endif
+"}}}
+
 " ---- Syntastic errors ---- {{{
 call s:SetDefaultVal('g:statline_syntastic', '1')
 if g:statline_syntastic
     set statusline+=\ %3*%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}%*
 endif
 "}}}
-
 
 " ====== custom errors ======
 
