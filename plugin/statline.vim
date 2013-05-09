@@ -102,6 +102,14 @@ if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
+" ---- vim-virtualenv ----
+
+if !exists('g:statline_virtualenv')
+    let g:statline_virtualenv = 0
+endif
+if g:statline_virtualenv
+    set statusline+=%4*%{exists('g:virtualenv_loaded')?virtualenv#statusline():''}%*
+endif
 
 " ---- separation between left/right aligned items ----
 
@@ -162,7 +170,6 @@ endif
 if g:statline_fugitive
     set statusline+=%4*%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
 endif
-
 
 " ---- Syntastic errors ----
 
