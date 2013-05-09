@@ -34,10 +34,18 @@ hi default link User2 Statement
 hi default link User3 Error
 " fugitive
 hi default link User4 Special
-
+" new alert
+hi default link User5 ErrorMsg
 
 
 " ====== basic info ======
+
+" ---- set default value of variable ----
+function s:SetDefaultVal(var, val)
+    if !exists({'a:var'})
+        let {a:var} = a:val
+    endif
+endfunction
 
 " ---- number of buffers : buffer number ----
 
@@ -100,6 +108,13 @@ if !exists('g:statline_no_encoding_string')
 endif
 if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
+endif
+
+" ---- paste mode ---
+call s:SetDefaultVal('g:statline_show_paste', '1')
+call s:SetDefaultVal('g:statline_show_paste_string', '[PASTE!]')
+if g:statline_show_paste
+    set statusline+=\ %5*%{&paste?(g:statline_show_paste_string):''}%*
 endif
 
 " ---- vim-virtualenv ----
