@@ -110,11 +110,13 @@ if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
-" ---- paste mode ---
-call s:SetDefaultVal('g:statline_show_paste', '1')
-call s:SetDefaultVal('g:statline_show_paste_string', '[PASTE!]')
-if g:statline_show_paste
-    set statusline+=\ %5*%{&paste?(g:statline_show_paste_string):''}%*
+" ---- Fugitive ----
+
+if !exists('g:statline_fugitive')
+    let g:statline_fugitive = 0
+endif
+if g:statline_fugitive
+    set statusline+=%4*%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
 endif
 
 " ---- vim-virtualenv ----
@@ -124,6 +126,13 @@ if !exists('g:statline_virtualenv')
 endif
 if g:statline_virtualenv
     set statusline+=%4*%{exists('g:virtualenv_loaded')?virtualenv#statusline():''}%*
+endif
+
+" ---- paste mode ---
+call s:SetDefaultVal('g:statline_show_paste', '1')
+call s:SetDefaultVal('g:statline_show_paste_string', '[PASTE!]')
+if g:statline_show_paste
+    set statusline+=\ %5*%{&paste?(g:statline_show_paste_string):''}%*
 endif
 
 " ---- separation between left/right aligned items ----
@@ -176,15 +185,6 @@ if g:statline_rbenv
     set statusline+=%{exists('g:loaded_rbenv')?rbenv#statusline():''}
 endif
 
-
-" ---- Fugitive ----
-
-if !exists('g:statline_fugitive')
-    let g:statline_fugitive = 0
-endif
-if g:statline_fugitive
-    set statusline+=%4*%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
-endif
 
 " ---- Syntastic errors ----
 
