@@ -111,7 +111,7 @@ set statusline+=%=
 " ---- current line and column ----
 
 " (-:left align, 14:minwid, l:line, L:nLines, c:column)
-set statusline+=%-14(\ L%l/%L:C%c\ %)
+set statusline+=%-14(\ L%l/%L:C%c%V\ %)
 
 
 " ----  scroll percent ----
