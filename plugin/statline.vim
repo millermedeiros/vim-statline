@@ -104,7 +104,7 @@ if !exists('g:statline_show_encoding')
     let g:statline_show_encoding = 1
 endif
 if !exists('g:statline_no_encoding_string')
-    let g:statline_no_encoding_string = 'No Encoding'
+    let g:statline_no_encoding_string = 'NoEnc'
 endif
 if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
