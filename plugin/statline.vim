@@ -34,10 +34,18 @@ hi default link User2 Statement
 hi default link User3 Error
 " fugitive
 hi default link User4 Special
-
+" new alert
+hi default link User5 ErrorMsg
 
 
 " ====== basic info ======
+
+" ---- set default value of variable ----
+function s:SetDefaultVal(var, val)
+    if !exists({'a:var'})
+        let {a:var} = a:val
+    endif
+endfunction
 
 " ---- number of buffers : buffer number ----
 
@@ -96,12 +104,36 @@ if !exists('g:statline_show_encoding')
     let g:statline_show_encoding = 1
 endif
 if !exists('g:statline_no_encoding_string')
-    let g:statline_no_encoding_string = 'No Encoding'
+    let g:statline_no_encoding_string = 'NoEnc'
 endif
 if g:statline_show_encoding
     set statusline+=[%{&ff}%{g:statline_encoding_separator}%{strlen(&fenc)?&fenc:g:statline_no_encoding_string}]
 endif
 
+" ---- Fugitive ----
+
+if !exists('g:statline_fugitive')
+    let g:statline_fugitive = 0
+endif
+if g:statline_fugitive
+    set statusline+=%4*%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
+endif
+
+" ---- vim-virtualenv ----
+
+if !exists('g:statline_virtualenv')
+    let g:statline_virtualenv = 0
+endif
+if g:statline_virtualenv
+    set statusline+=%4*%{exists('g:virtualenv_loaded')?virtualenv#statusline():''}%*
+endif
+
+" ---- paste mode ---
+call s:SetDefaultVal('g:statline_show_paste', '1')
+call s:SetDefaultVal('g:statline_show_paste_string', '[PASTE!]')
+if g:statline_show_paste
+    set statusline+=\ %5*%{&paste?(g:statline_show_paste_string):''}%*
+endif
 
 " ---- separation between left/right aligned items ----
 
@@ -151,16 +183,6 @@ if !exists('g:statline_rbenv')
 endif
 if g:statline_rbenv
     set statusline+=%{exists('g:loaded_rbenv')?rbenv#statusline():''}
-endif
-
-
-" ---- Fugitive ----
-
-if !exists('g:statline_fugitive')
-    let g:statline_fugitive = 0
-endif
-if g:statline_fugitive
-    set statusline+=%4*%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
 endif
 
 
