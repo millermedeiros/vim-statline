@@ -157,10 +157,10 @@ set statusline+=%=
 "}}}
 
 " ---- current line and column ---- {{{
-" (-:left align, 14:minwid, l:line, L:nLines, c:column)
+" (-:left align, 14:minwid, l:line, L:nLines, c:column or virtual column)
 call s:SetDefaultVal('g:statline_show_line_col_numbers', '1')
 if g:statline_show_line_col_numbers
-    set statusline+=%-14(\ L%l/%L:C%c\ %)
+    set statusline+=%-14(\ L%l/%L:C%c%V\ %)
 endif
 "}}}
 
