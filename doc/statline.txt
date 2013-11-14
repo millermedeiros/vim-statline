@@ -96,6 +96,15 @@ only show the filename. Set the following to show by relative paths: >
 <
 
 ------------------------------------------------------------------------------
+                                                            *'vim-virtualenv'*
+
+If set, will show the virtualenv plugin statusline (default is off).
+Set the following to show: >
+
+    let g:statline_virtualenv = 1
+<
+
+------------------------------------------------------------------------------
                                                     *'statline_show_filepath'*
 
 If set, will show the current working directory (default is off).
