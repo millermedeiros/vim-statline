@@ -108,6 +108,13 @@ if g:statline_show_savetime
 endif
 "}}}
 
+" ---- vim-virtualenv ---- "{{{
+call s:SetDefaultVal('g:statline_virtualenv', '0')
+if g:statline_virtualenv
+    set statusline+=%4*%{exists('g:virtualenv_loaded')?virtualenv#statusline():''}%*
+endif
+  "}}}
+
 " ---- filetype ---- {{{
 call s:SetDefaultVal('g:statline_show_filetype', '1')
 set statusline+=\ %y
