@@ -39,6 +39,13 @@ See |'syntastic_stl_format'| for customization info.
 <
 
 ------------------------------------------------------------------------------
+                                                      *'statline_scmfrontend'*
+
+|ScmFrontEnd| integration is disabled by default, to enable it: >
+    let g:statline_scmfrontend = 1
+<
+
+------------------------------------------------------------------------------
                                                               *'statline_rvm'*
 
 |rvm| integration is disabled by default, to enable it: >
@@ -86,6 +93,33 @@ If set, will show the relative path (from cwd) to the file, otherwise it will
 only show the filename. Set the following to show by relative paths: >
 
     let g:statline_filename_relative = 1
+<
+
+------------------------------------------------------------------------------
+                                                            *'vim-virtualenv'*
+
+If set, will show the virtualenv plugin statusline (default is off).
+Set the following to show: >
+
+    let g:statline_virtualenv = 1
+<
+
+------------------------------------------------------------------------------
+                                                    *'statline_show_filepath'*
+
+If set, will show the current working directory (default is off).
+Set the following to hide: >
+
+    let g:statline_show_filepath = 0
+<
+
+------------------------------------------------------------------------------
+                                                    *'statline_show_savetime'*
+
+Will show the time, the current file was last modified (default is off).
+Set the following to hide: >
+
+    let g:statline_show_savetime = 0
 <
 
 ------------------------------------------------------------------------------
@@ -137,6 +171,27 @@ disabled by default. Set the following to enable it: >
 <
 
 ------------------------------------------------------------------------------
+                                                       *'statline_show_paste'*
+
+If set, will show the status of the 'paste' mode. It is enabled by default. 
+Set the following to disable it: >
+    let g:statline_show_paste = 0
+<
+
+The default setting of the g:statline_show_paste_string = '[PASTE!]'
+
+
+------------------------------------------------------------------------------
+                                                        *'statline_show_list'*
+
+If set, will show the status of the 'list' mode. It is enabled by default. Set
+the following to disable it: >
+    let g:statline_show_list = 0
+<
+
+The default setting of the g:statline_show_list_string = '[LIST!]'
+
+------------------------------------------------------------------------------
                                                              *statline-colors*
 
 Statline adapts to your colorcheme without any extra settings but if you want
@@ -152,6 +207,8 @@ are the default settings: >
     hi link User3 Error
     " fugitive
     hi link User4 Special
+    " mode alert
+    hi link User5 ErrorMsg
 <
 
 You can change these colors inside your .vimrc file, eg: >
