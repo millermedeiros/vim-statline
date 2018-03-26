@@ -134,6 +134,16 @@ endif
 " ====== plugins ======
 
 
+" ---- Obsess ----
+
+if !exists('g:statline_obsess')
+    let g:statline_obsess = 0
+endif
+if g:statline_obsess
+    set statusline+=\ %2*%{exists('g:loaded_obsession')?ObsessionStatus():''}%*
+endif
+
+
 " ---- RVM ----
 
 if !exists('g:statline_rvm')
